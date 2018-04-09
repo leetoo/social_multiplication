@@ -19,18 +19,17 @@ import javax.persistence.Id;
 @EqualsAndHashCode
 @Entity
 public final class Multiplication {
+  @Id
+  @GeneratedValue
+  @Column(name = "MULTIPLICATION_ID")
+  private Long id;
+  // Both factors
+  private final int factorA;
+  private final int factorB;
+  // private final int result;
 
-    @Id
-    @GeneratedValue
-    @Column(name = "MULTIPLICATION_ID")
-    private Long id;
-
-    // Both factors
-    private final int factorA;
-    private final int factorB;
-
-    // Empty constructor for JSON/JPA
-    Multiplication() {
-        this(0, 0);
-    }
+  // Empty constructor for JSON/JPA
+  Multiplication() {
+    this(0, 0);
+  }
 }
