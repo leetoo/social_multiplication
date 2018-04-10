@@ -3,10 +3,7 @@ package microservices.book.gamification.service;
 import lombok.extern.slf4j.Slf4j;
 import microservices.book.gamification.client.MultiplicationResultAttemptClient;
 import microservices.book.gamification.client.dto.MultiplicationResultAttempt;
-import microservices.book.gamification.domain.Badge;
-import microservices.book.gamification.domain.BadgeCard;
-import microservices.book.gamification.domain.GameStats;
-import microservices.book.gamification.domain.ScoreCard;
+import microservices.book.gamification.domain.*;
 import microservices.book.gamification.repository.BadgeCardRepository;
 import microservices.book.gamification.repository.ScoreCardRepository;
 import org.springframework.stereotype.Service;
@@ -118,8 +115,8 @@ class GameServiceImpl implements GameService {
      * It also assigns badge to user if the conditions are met.
      */
     private Optional<BadgeCard> checkAndGiveBadgeBasedOnScore(
-      final List<BadgeCard> badgeCards, final Badge badge,
-      final int score, final int scoreThreshold, final Long userId) {
+            final List<BadgeCard> badgeCards, final Badge badge,
+            final int score, final int scoreThreshold, final Long userId) {
         if(score >= scoreThreshold && !containsBadge(badgeCards, badge)) {
             return Optional.of(giveBadgeToUser(badge, userId));
         }

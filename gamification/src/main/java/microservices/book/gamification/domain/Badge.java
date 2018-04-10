@@ -1,6 +1,8 @@
 package microservices.book.gamification.domain;
 
-
+/**
+ * Enumeration with the different types of Badges that a user can win.
+ */
 public enum Badge {
 
     // Badges depending on score

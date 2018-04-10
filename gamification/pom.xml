@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>microservices.book</groupId>
-	<artifactId>gamification-v5</artifactId>
-	<version>0.5.0-SNAPSHOT</version>
+	<artifactId>gamification-v7</artifactId>
+	<version>0.7.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>gamification-v5</name>
+	<name>gamification-v7</name>
 	<description>Social Multiplication App - Gamification (Microservices - the Practical Way book)</description>
 
 	<parent>
@@ -39,7 +39,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.12</version>
+			<version>1.16.18</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>

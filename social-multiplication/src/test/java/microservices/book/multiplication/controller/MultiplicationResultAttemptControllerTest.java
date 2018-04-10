@@ -18,14 +18,14 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MultiplicationResultAttemptController.class)
@@ -37,7 +37,7 @@ public class MultiplicationResultAttemptControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    // These objects will be magically initialized by the initFields method below .
+    // These objects will be magically initialized by the initFields method below.
     private JacksonTester<MultiplicationResultAttempt> jsonResultAttempt;
     private JacksonTester<List<MultiplicationResultAttempt>> jsonResultAttemptList;
 
@@ -68,7 +68,7 @@ public class MultiplicationResultAttemptControllerTest {
 
         // when
         MockHttpServletResponse response = mvc.perform(
-                MockMvcRequestBuilders.post("/results").contentType(MediaType.APPLICATION_JSON)
+                post("/results").contentType(MediaType.APPLICATION_JSON)
                         .content(jsonResultAttempt.write(attempt).getJson()))
                 .andReturn().getResponse();
 
@@ -106,6 +106,26 @@ public class MultiplicationResultAttemptControllerTest {
                 jsonResultAttemptList.write(
                         recentAttempts
                 ).getJson());
+    }
+
+    @Test
+    public void getResultByIdTest() throws Exception {
+        // given
+        User user = new User("john_doe");
+        Multiplication multiplication = new Multiplication(50, 70);
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(
+                user, multiplication, 3500, true);
+        given(multiplicationService.getResultById(4L)).willReturn(attempt);
+
+        // when
+        MockHttpServletResponse response = mvc.perform(
+                get("/results/4"))
+                .andReturn().getResponse();
+
+        // then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.getContentAsString()).isEqualTo(
+                jsonResultAttempt.write(attempt).getJson());
     }
 
 }
