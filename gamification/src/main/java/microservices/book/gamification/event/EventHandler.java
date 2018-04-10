@@ -6,10 +6,7 @@ import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-/**
- * This class receives the events and triggers the associated
- * business logic.
- */
+
 @Slf4j
 @Component
 class EventHandler {
