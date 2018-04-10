@@ -10,16 +10,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MultiplicationResultAttemptController.class)
@@ -31,7 +37,7 @@ public class MultiplicationResultAttemptControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    // These objects will be magically initialized by the initFields method below.
+    // These objects will be magically initialized by the initFields method below .
     private JacksonTester<MultiplicationResultAttempt> jsonResultAttempt;
     private JacksonTester<List<MultiplicationResultAttempt>> jsonResultAttemptList;
 
@@ -62,7 +68,7 @@ public class MultiplicationResultAttemptControllerTest {
 
         // when
         MockHttpServletResponse response = mvc.perform(
-                post("/results").contentType(MediaType.APPLICATION_JSON)
+                MockMvcRequestBuilders.post("/results").contentType(MediaType.APPLICATION_JSON)
                         .content(jsonResultAttempt.write(attempt).getJson()))
                 .andReturn().getResponse();
 
