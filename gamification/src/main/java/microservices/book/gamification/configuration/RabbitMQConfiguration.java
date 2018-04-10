@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 
-
+/**
+ * Configures RabbitMQ to use events in our application.
+ */
 @Configuration
 public class RabbitMQConfiguration implements RabbitListenerConfigurer {
 
