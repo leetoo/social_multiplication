@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * This class provides a REST API to POST the attempts from users.
- */
+
 @Slf4j
 @RestController
 @RequestMapping("/results")
@@ -31,17 +29,12 @@ final class MultiplicationResultAttemptController {
     }
 
     @PostMapping
-    ResponseEntity<MultiplicationResultAttempt> postResult(
-            final @RequestBody MultiplicationResultAttempt
-                    multiplicationResultAttempt) {
-        return ResponseEntity.ok(
-                multiplicationService.checkAttempt(multiplicationResultAttempt)
-        );
+    ResponseEntity<MultiplicationResultAttempt> postResult(@RequestBody MultiplicationResultAttempt multiplicationResultAttempt) {
+        return ResponseEntity.ok(multiplicationService.checkAttempt(multiplicationResultAttempt));
     }
 
     @GetMapping
-    ResponseEntity<List<MultiplicationResultAttempt>> getStatistics(
-            final @RequestParam("alias") String alias) {
+    ResponseEntity<List<MultiplicationResultAttempt>> getStatistics(@RequestParam("alias") String alias) {
         return ResponseEntity.ok(
                 multiplicationService.getStatsForUser(alias)
         );

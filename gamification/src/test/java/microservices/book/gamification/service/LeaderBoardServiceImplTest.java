@@ -13,9 +13,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
-/**
- * @author moises.macero
- */
+
 public class LeaderBoardServiceImplTest {
 
     private LeaderBoardServiceImpl leaderBoardService;

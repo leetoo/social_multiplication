@@ -10,9 +10,7 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
-/**
- * @author moises.macero
- */
+
 public class EventHandlerTest {
 
     private EventHandler eventHandler;

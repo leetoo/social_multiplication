@@ -12,9 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * @author moises.macero
- */
+
 @Configuration
 public class HystrixFallbackConfiguration {
 

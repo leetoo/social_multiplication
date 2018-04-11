@@ -8,18 +8,16 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/**
- * Handles CRUD operations with ScoreCards
- */
+
 public interface ScoreCardRepository extends CrudRepository<ScoreCard, Long> {
 
     /**
      * Gets the total score for a given user, being the sum of the scores of all his ScoreCards.
      * @param userId the id of the user for which the total score should be retrieved
-     * @return the total score for the given user
+     * @return the total score for the given user, null if the user could not be found
      */
     @Query("SELECT SUM(s.score) FROM microservices.book.gamification.domain.ScoreCard s WHERE s.userId = :userId GROUP BY s.userId")
-    int getTotalScoreForUser(@Param("userId") final Long userId);
+    Integer getTotalScoreForUser(@Param("userId") final Long userId);
 
     /**
      * Retrieves a list of {@link LeaderBoardRow}s representing the Leader Board of users and their total score.
@@ -36,4 +34,11 @@ public interface ScoreCardRepository extends CrudRepository<ScoreCard, Long> {
      * @return a list containing all the ScoreCards for the given user, sorted by most recent.
      */
     List<ScoreCard> findByUserIdOrderByScoreTimestampDesc(final Long userId);
+
+    /**
+     * Retrieves a ScoreCard using the unique id
+     * @param attemptId the unique id of the scorecard
+     * @return the {@link ScoreCard} object matching the id
+     */
+    ScoreCard findByAttemptId(final Long attemptId);
 }

@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>microservices.book</groupId>
-	<artifactId>gamification-v8</artifactId>
-	<version>0.8.0-SNAPSHOT</version>
+	<artifactId>gamification</artifactId>
+	<version>0.9.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>gamification-v8</name>
-	<description>Social Multiplication App - Gamification (Microservices - the Practical Way book)</description>
+	<name>gamification</name>
+	<description>Social Multiplication App - Gamification</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

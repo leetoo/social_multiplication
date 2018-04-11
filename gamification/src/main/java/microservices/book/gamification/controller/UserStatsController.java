@@ -3,14 +3,10 @@ package microservices.book.gamification.controller;
 
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.service.GameService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-/**
- * This class implements a REST API for the Gamification User Statistics service.
- */
+
 @RestController
 @RequestMapping("/stats")
 class UserStatsController {

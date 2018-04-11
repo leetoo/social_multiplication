@@ -7,9 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import microservices.book.gamification.client.MultiplicationResultAttemptDeserializer;
 
-/**
- * Identifies the attempt from a user to solve a multiplication.
- */
 @RequiredArgsConstructor
 @Getter
 @ToString

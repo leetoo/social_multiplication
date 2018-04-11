@@ -4,9 +4,7 @@ import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.*;
 import org.springframework.context.annotation.Bean;
 
-/**
- * @author moises.macero
- */
+
 public class RibbonConfiguration {
 
     @Bean
