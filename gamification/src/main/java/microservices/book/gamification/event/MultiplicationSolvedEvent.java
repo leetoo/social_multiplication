@@ -7,7 +7,10 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-
+/**
+ * Event received when a multiplication has been solved in the system.
+ * Provides some context information about the multiplication.
+ */
 @RequiredArgsConstructor
 @Getter
 @ToString

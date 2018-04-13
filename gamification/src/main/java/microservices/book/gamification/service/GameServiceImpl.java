@@ -51,7 +51,10 @@ class GameServiceImpl implements GameService {
         return GameStats.emptyStats(userId);
     }
 
-
+    /**
+     * Checks the total score and the different score cards obtained
+     * to give new badges in case their conditions are met.
+     */
     private List<BadgeCard> processForBadges(final Long userId,
                                              final Long attemptId) {
         List<BadgeCard> badgeCards = new ArrayList<>();
@@ -114,7 +117,11 @@ class GameServiceImpl implements GameService {
         return scoreCardRepository.findByAttemptId(attemptId);
     }
 
-
+    /**
+     * Convenience method to check the current score against
+     * the different thresholds to gain badges.
+     * It also assigns badge to user if the conditions are met.
+     */
     private Optional<BadgeCard> checkAndGiveBadgeBasedOnScore(
             final List<BadgeCard> badgeCards, final Badge badge,
             final int score, final int scoreThreshold, final Long userId) {
@@ -124,13 +131,17 @@ class GameServiceImpl implements GameService {
         return Optional.empty();
     }
 
-
+    /**
+     * Checks if the passed list of badges includes the one being checked
+     */
     private boolean containsBadge(final List<BadgeCard> badgeCards,
                                   final Badge badge) {
         return badgeCards.stream().anyMatch(b -> b.getBadge().equals(badge));
     }
 
-
+    /**
+     * Assigns a new badge to the given user
+     */
     private BadgeCard giveBadgeToUser(final Badge badge, final Long userId) {
         BadgeCard badgeCard = new BadgeCard(userId, badge);
         badgeCardRepository.save(badgeCard);

@@ -29,7 +29,11 @@ public class AdminControllerEnabledTest {
     @Autowired
     private MockMvc mvc;
 
-
+    /**
+     * This test checks that the controller is working as expected when
+     * the profile is set to test (see annotation in class declaration)
+     * @throws Exception if any error occurs
+     */
     @Test
     public void deleteDatabaseTest() throws Exception {
         // when

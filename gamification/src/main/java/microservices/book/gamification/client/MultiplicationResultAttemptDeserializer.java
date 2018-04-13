@@ -10,7 +10,10 @@ import microservices.book.gamification.client.dto.MultiplicationResultAttempt;
 
 import java.io.IOException;
 
-
+/**
+ * Deserializes an attempt coming from the Multiplication microservice
+ * into the Gamification's representation of an attempt.
+ */
 public class MultiplicationResultAttemptDeserializer
         extends JsonDeserializer<MultiplicationResultAttempt> {
 

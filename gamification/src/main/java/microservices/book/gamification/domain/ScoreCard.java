@@ -10,7 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
+/**
+ * This class represents the Score linked to an attempt in the game,
+ * with an associated user and the timestamp in which the score
+ * is registered.
+ */
 @RequiredArgsConstructor
 @Getter
 @ToString

@@ -27,6 +27,12 @@ public class AdminControllerDisabledTest {
     @Autowired
     private MockMvc mvc;
 
+    /**
+     * This test checks that the controller is NOT ACCESSIBLE
+     * when profile is not set to test
+     *
+     * @throws Exception if any error occurs
+     */
     @Test
     public void deleteDatabaseTest() throws Exception {
         // when

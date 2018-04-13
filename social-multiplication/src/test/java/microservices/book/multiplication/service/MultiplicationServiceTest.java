@@ -23,7 +23,6 @@ public class MultiplicationServiceTest {
   @Test
   public void createRandomMultiplicationTest() {
 // given (our mocked Random Generator service will return first 50, then 30)
-
     given(randomGeneratorService.generateRandomFactor()).
       willReturn(50, 30);
 // when
@@ -32,7 +31,6 @@ public class MultiplicationServiceTest {
 // then
     assertThat(multiplication.getFactorA()).isEqualTo(50);
     assertThat(multiplication.getFactorB()).isEqualTo(30);
-
     //assertThat(multiplication.getResult()).isEqualTo(1500);
   }
 }

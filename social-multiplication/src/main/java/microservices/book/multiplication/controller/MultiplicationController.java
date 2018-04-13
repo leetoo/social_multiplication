@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+/**
+ * This class implements a REST API for our Multiplication application.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/multiplications")

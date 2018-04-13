@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
+/**
+ * This class represents a Multiplication (a * b).
+ */
 @RequiredArgsConstructor
 @Getter
 @ToString

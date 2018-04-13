@@ -12,56 +12,54 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-
 @Configuration
 public class HystrixFallbackConfiguration {
+  @Bean
+  public ZuulFallbackProvider zuulFallbackProvider() {
+    return new ZuulFallbackProvider() {
+      @Override
+      public String getRoute() {
+        // Might be confusing: it's the serviceId property and not the route
+        return "multiplication";
+      }
 
-    @Bean
-    public ZuulFallbackProvider zuulFallbackProvider() {
-        return new ZuulFallbackProvider() {
+      @Override
+      public ClientHttpResponse fallbackResponse() {
+        return new ClientHttpResponse() {
+          @Override
+          public HttpStatus getStatusCode() throws IOException {
+            return HttpStatus.OK;
+          }
 
-            @Override
-            public String getRoute() {
-                // Might be confusing: it's the serviceId property and not the route
-                return "multiplication";
-            }
+          @Override
+          public int getRawStatusCode() throws IOException {
+            return HttpStatus.OK.value();
+          }
 
-            @Override
-            public ClientHttpResponse fallbackResponse() {
-                return new ClientHttpResponse() {
-                    @Override
-                    public HttpStatus getStatusCode() throws IOException {
-                        return HttpStatus.OK;
-                    }
+          @Override
+          public String getStatusText() throws IOException {
+            return HttpStatus.OK.toString();
+          }
 
-                    @Override
-                    public int getRawStatusCode() throws IOException {
-                        return HttpStatus.OK.value();
-                    }
+          @Override
+          public void close() {
+          }
 
-                    @Override
-                    public String getStatusText() throws IOException {
-                        return HttpStatus.OK.toString();
-                    }
+          @Override
+          public InputStream getBody() throws IOException {
+            return new ByteArrayInputStream("{\"factorA\":\"Sorry, Service is Down!\",\"factorB\":\"?\",\"id\":null}".getBytes());
+          }
 
-                    @Override
-                    public void close() {}
-
-                    @Override
-                    public InputStream getBody() throws IOException {
-                        return new ByteArrayInputStream("{\"factorA\":\"Sorry, Service is Down!\",\"factorB\":\"?\",\"id\":null}".getBytes());
-                    }
-
-                    @Override
-                    public HttpHeaders getHeaders() {
-                        HttpHeaders headers = new HttpHeaders();
-                        headers.setContentType(MediaType.APPLICATION_JSON);
-                        headers.setAccessControlAllowCredentials(true);
-                        headers.setAccessControlAllowOrigin("*");
-                        return headers;
-                    }
-                };
-            }
+          @Override
+          public HttpHeaders getHeaders() {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccessControlAllowCredentials(true);
+            headers.setAccessControlAllowOrigin("*");
+            return headers;
+          }
         };
-    }
+      }
+    };
+  }
 }

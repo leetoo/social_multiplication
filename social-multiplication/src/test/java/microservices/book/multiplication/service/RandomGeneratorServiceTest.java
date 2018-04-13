@@ -37,8 +37,7 @@ public class RandomGeneratorServiceTest {
     // when a good sample of randomly generated factors is generated
     List<Integer> randomFactors = IntStream.range(0, 1000)
       .map(i -> randomGeneratorService.generateRandomFactor())
-        .boxed().collect(Collectors.toList());
-
+      .boxed().collect(Collectors.toList());
     // then all of them should be between 11 and 100
     // because we want a middle-complexity calculation
     assertThat(randomFactors).containsOnlyElementsOf(IntStream.range(11, 100)

@@ -52,7 +52,7 @@ class MultiplicationServiceImpl implements MultiplicationService {
 
         // Check if the attempt is correct
         boolean isCorrect = attempt.getResultAttempt() ==
-                        attempt.getMultiplication().getFactorA() *
+                attempt.getMultiplication().getFactorA() *
                         attempt.getMultiplication().getFactorB();
 
         MultiplicationResultAttempt checkedAttempt = new MultiplicationResultAttempt(
@@ -82,7 +82,11 @@ class MultiplicationServiceImpl implements MultiplicationService {
 
     @Override
     public MultiplicationResultAttempt getResultById(final Long resultId) {
-        return attemptRepository.findOne(resultId);
+        // BOOT2: changed from findOne
+        return attemptRepository.findById(resultId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "The requested resultId [" + resultId +
+                                "] does not exist."));
     }
 
 

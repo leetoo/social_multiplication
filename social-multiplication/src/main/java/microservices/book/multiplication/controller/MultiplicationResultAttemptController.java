@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+/**
+ * This class provides a REST API to POST the attempts from users.
+ */
 @Slf4j
 @RestController
 @RequestMapping("/results")

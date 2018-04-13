@@ -8,7 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-
+/**
+ * Handles CRUD operations with ScoreCards
+ */
 public interface ScoreCardRepository extends CrudRepository<ScoreCard, Long> {
 
     /**

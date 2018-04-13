@@ -6,7 +6,9 @@ import microservices.book.gamification.service.GameService;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.*;
 
-
+/**
+ * This class implements a REST API for the Gamification User Statistics service.
+ */
 @RestController
 @RequestMapping("/stats")
 class UserStatsController {

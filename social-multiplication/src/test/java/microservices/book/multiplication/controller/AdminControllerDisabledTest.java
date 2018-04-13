@@ -16,28 +16,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-
 @RunWith(SpringRunner.class)
 @WebMvcTest(AdminController.class)
 public class AdminControllerDisabledTest {
+  @MockBean
+  private AdminService adminService;
+  @Autowired
+  private MockMvc mvc;
 
-    @MockBean
-    private AdminService adminService;
-
-    @Autowired
-    private MockMvc mvc;
-
-
-    @Test
-    public void deleteDatabaseTest() throws Exception {
-        // when
-        MockHttpServletResponse response = mvc.perform(
-                post("/multiplication/admin/delete-db")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andReturn().getResponse();
-
-        // then
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
-        verifyZeroInteractions(adminService);
-    }
+  /**
+   * This test checks that the controller is NOT ACCESSIBLE
+   * when profile is not set to test
+   *
+   * @throws Exception if any error occurs
+   */
+  @Test
+  public void deleteDatabaseTest() throws Exception {
+    // when
+    MockHttpServletResponse response = mvc.perform(
+      post("/multiplication/admin/delete-db")
+        .accept(MediaType.APPLICATION_JSON))
+      .andReturn().getResponse();
+    // then
+    assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
+    verifyZeroInteractions(adminService);
+  }
 }

@@ -20,6 +20,10 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public User getUserById(@PathVariable("userId") final Long userId){
-        return userRepository.findOne(userId);
+        // BOOT2: changed from findOne
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "The requested userId [" + userId +
+                                "] does not exist."));
     }
 }
